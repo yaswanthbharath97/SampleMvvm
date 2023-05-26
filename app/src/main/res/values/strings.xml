@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SampleMvvm</string>
+    <string name="searchnotes">SearchNotes</string>
+    <string name="delete">Delete</string>
+</resources>
