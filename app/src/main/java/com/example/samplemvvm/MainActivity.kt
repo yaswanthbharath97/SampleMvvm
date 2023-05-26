@@ -2,8 +2,9 @@ package com.example.samplemvvm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModel
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.samplemvvm.Adapter.NoteAdapter
 import com.example.samplemvvm.Database.NoteDatabase
 import com.example.samplemvvm.Models.Note
@@ -31,18 +32,26 @@ class MainActivity : AppCompatActivity() {
 
         viewModel=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
 
-        viewModel.allnotes.observe(this,{
-            list ->
+        viewModel.allnotes?.observe(this,{
+                list ->
             list?.let{
                 adapter.updateList(list)
             }
         })
 
+        database = NoteDatabase.getDatabase(this)
 
 
     }
 
     private fun initUI() {
+
+        binding.noteRecyclerview.setHasFixedSize(true)
+        binding.noteRecyclerview.layoutManager=StaggeredGridLayoutManager(2, LinearLayout.VERTICAL)
+
+        adapter= NoteAdapter(this,this)
+
+        binding.noteRecyclerview.adapter=adapter
 
     }
 }
