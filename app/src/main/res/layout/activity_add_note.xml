@@ -29,7 +29,15 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 app:srcCompat="@drawable/back_arrow" />
-
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="Add Note"
+                 android:textStyle="normal"
+                 android:textSize="18sp"
+                 android:layout_centerInParent="true"
+                 android:gravity="center"
+                 />
 
             <ImageView
                 android:id="@+id/check"
@@ -66,15 +74,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="26dp"
+        android:background="@null"
         android:ems="10"
         android:gravity="top"
         android:hint="Start Typing..."
-        android:inputType="text"
+        android:inputType="textMultiLine"
         android:lineSpacingMultiplier="1.8"
-        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/edit_title"
+        app:layout_constraintStart_toStartOf="@+id/edit_title"
         app:layout_constraintTop_toBottomOf="@id/edit_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,14 +2,12 @@ package com.example.samplemvvm.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.icu.text.Transliterator.Position
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.samplemvvm.MainActivity
 import com.example.samplemvvm.Models.Note
 import com.example.samplemvvm.R
 import kotlin.random.Random
@@ -66,19 +64,18 @@ class NoteAdapter(private val context: Context, val listener: NotesItemClickList
     }
 
 
-    fun randomColor(): Int {
-        val listcolor=  ArrayList<Int>()
-        listcolor.add(R.color.Notecolor1)
-        listcolor.add(R.color.Notecolor2)
-        listcolor.add(R.color.Notecolor3)
-        listcolor.add(R.color.Notecolor4)
-        listcolor.add(R.color.Notecolor5)
-        listcolor.add(R.color.Notecolor6)
-
-
+    private fun randomColor(): Int {
+        val list_color=  ArrayList<Int>()
+        list_color.add(R.color.Notecolor1)
+        list_color.add(R.color.Notecolor2)
+        list_color.add(R.color.Notecolor3)
+        list_color.add(R.color.Notecolor4)
+        list_color.add(R.color.Notecolor5)
+        list_color.add(R.color.Notecolor6)
+        
         val seed=System.currentTimeMillis().toInt()
-        val randomIndex= Random(seed).nextInt(listcolor.size)
-        return listcolor[randomIndex]
+        val randomIndex= Random(seed).nextInt(list_color.size)
+        return list_color[randomIndex]
 
     }
 

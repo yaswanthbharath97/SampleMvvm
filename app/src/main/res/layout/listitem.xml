@@ -23,9 +23,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="8dp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="Title"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
@@ -33,15 +39,23 @@
             android:id="@+id/text_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="10"
+            android:padding="8dp"
             android:text="Title"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/note_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
+            android:ellipsize="marquee"
+            android:padding="8dp"
+            android:scrollHorizontally="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="11sp" />
 
