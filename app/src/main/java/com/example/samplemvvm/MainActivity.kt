@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity(),NoteAdapter.NotesItemClickListener,Popu
         val popup=PopupMenu(this,notesView)
         popup.setOnMenuItemClickListener(this@MainActivity)
         popup.inflate(R.menu.pop_menu)
+        popup.show()
 
     }
 

@@ -17,7 +17,8 @@
         android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/add" />
+        app:srcCompat="@drawable/add"
+        android:focusable="true" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
@@ -35,6 +36,7 @@
         android:id="@+id/noteRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
