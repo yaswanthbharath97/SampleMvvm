@@ -1,13 +1,16 @@
 package com.example.samplemvvm
 
+
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.SearchView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +20,7 @@ import com.example.samplemvvm.Database.NoteDatabase
 import com.example.samplemvvm.Models.Note
 import com.example.samplemvvm.Models.NoteViewModel
 import com.example.samplemvvm.databinding.ActivityMainBinding
+import java.io.Serializable
 
 class MainActivity : AppCompatActivity(),NoteAdapter.NotesItemClickListener,PopupMenu.OnMenuItemClickListener {
 
@@ -30,7 +34,7 @@ class MainActivity : AppCompatActivity(),NoteAdapter.NotesItemClickListener,Popu
     private val updateNote = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         result ->
         if (result.resultCode==Activity.RESULT_OK){
-            val note=result.data?.getSerializableExtra("note") as? Note
+            val note=result.data?.serializable("note") as? Note
             if(note != null){
                 viewModel.updateNote(note)
             }
@@ -52,11 +56,11 @@ class MainActivity : AppCompatActivity(),NoteAdapter.NotesItemClickListener,Popu
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
 
 
-        viewModel.allnotes?.observe(this, { list ->
+        viewModel.allnotes.observe(this) { list ->
             list?.let {
                 adapter.updateList(list)
             }
-        })
+        }
 
         database = NoteDatabase.getDatabase(this)
 
@@ -74,7 +78,7 @@ class MainActivity : AppCompatActivity(),NoteAdapter.NotesItemClickListener,Popu
         val getContent =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
-                    val note = result.data?.getSerializableExtra("note") as? Note
+                    val note = result.data?.serializable("note") as? Note
                     if (note != null) {
                         viewModel.insertNote(note)
                     }
@@ -130,5 +134,12 @@ class MainActivity : AppCompatActivity(),NoteAdapter.NotesItemClickListener,Popu
       }
         return false
     }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    @Suppress("DEPRECATION")
+    inline fun <reified Note : Serializable> Intent.serializable(key: String): Note? {
+        return getSerializableExtra(key) as? Note?
+    }
+
 }
 

@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.samplemvvm.Models.Note
 import com.example.samplemvvm.R
+import com.example.samplemvvm.SampleDiffUtilClass
 import kotlin.random.Random
 
 class NoteAdapter(private val context: Context, val listener: NotesItemClickListener) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
@@ -79,16 +81,16 @@ class NoteAdapter(private val context: Context, val listener: NotesItemClickList
 
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     fun updateList(newList:List<Note>)
     {
+       val diffUtilResult= DiffUtil.calculateDiff(SampleDiffUtilClass(NoteList,newList))
+       NoteList.clear()
+        NoteList.addAll(newList)
         fullList.clear()
         fullList.addAll(newList)
+        diffUtilResult.dispatchUpdatesTo(this)
 
-        NoteList.clear()
-        NoteList.addAll(newList)
-
-        notifyDataSetChanged()
     }
 
 
